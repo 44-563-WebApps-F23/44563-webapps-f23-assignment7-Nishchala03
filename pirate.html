@@ -52,42 +52,126 @@
           <div>
               <img id="i5" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(5)">
               <img id="i6" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(6)">
-              <img id="i6" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(7)">
-              <img id="i7" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(8)">
-              <img id="i8" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(9)">
+              <img id="i7" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(7)">
+              <img id="i8" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(8)">
+              <img id="i9" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(9)">
               
           </div>
       </div>
       <div class="image-row d-flex">
           <div>
-              <img id="i9" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(10)">
-              <img id="i10" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(11)">
-              <img id="i11" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(12)">
-              <img id="i12" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(13)">
-              <img id="i13" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(14)">
+              <img id="i10" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(10)">
+              <img id="i11" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(11)">
+              <img id="i12" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(12)">
+              <img id="i13" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(13)">
+              <img id="i14" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(14)">
               
           </div>
       </div>
       <div class="image-row d-flex">
           <div>
-              <img id="i14" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(15)">
-              <img id="i15" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(16)">
-              <img id="i16" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(17)">
-              <img id="i17" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(18)">
-              <img id="i18" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(19)">
+              <img id="i15" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(15)">
+              <img id="i16" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(16)">
+              <img id="i17" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(17)">
+              <img id="i18" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(18)">
+              <img id="i19" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(19)">
               
           </div>
       </div>
       <div class="image-row d-flex">
         <div>
-            <img id="i19" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(20)">
-            <img id="i20" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(21)">
-            <img id="i21" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(22)">
-            <img id="i22" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(23)">
-            <img id="i23" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(24)">
+            <img id="i20" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(20)">
+            <img id="i21" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(21)">
+            <img id="i22" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(22)">
+            <img id="i23" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(23)">
+            <img id="i24" src="tressure.jpg" alt="tressure" height="125" width="125" onclick="check(24)">
             
         </div>
     </div>
   </div>
+  
+  <script>
+
+    checkCount = 0;
+
+    penalty = 0;
+
+    lastCheck = 0;
+
+    treasureLocation = 5;
+
+    trapLocation = 18,
+
+        ids = ["i0", "i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9", "i10", "i11", "i12", "i13", "i14", "i15", "i16", "i17", "i18", "i19", "i20", "i21", "i22", "i23", "i24"]
+
+    gameOver = false;
+
+    function check(position) {
+        if (gameOver) return;
+        const id = ids[position];
+
+        const image = document.getElementById(id);
+        console.log(image)
+        console.log(id)
+
+
+        if (position == treasureLocation) {
+            image.src = "treasure (2).png";
+            gameOver = true;
+            penalty -= 3;
+        } else if (position == trapLocation) {
+            image.src = "treasure (3).png";
+            gameOver = true;
+            penalty += 4;
+        } else {
+            image.src = "treasure (4).png";
+        }
+        checkCount++;
+        penalty++;
+        document.getElementById("locations").innerHTML = `Locations: ${checkCount}`;
+        document.getElementById("penalty").innerHTML = `Penalty: ${penalty}`;
+        lastCheck = position;
+    }
+
+    document.getElementById("help_id").onclick = help;
+
+    function help() {
+
+        const tresRow = Math.floor(treasureLocation / 5);
+
+        const tresCol = treasureLocation % 5;
+
+        const lrow = Math.floor(lastCheck / 5);
+
+        const lcol = lastCheck % 5;
+        if (
+
+            Math.abs(tresRow - lrow) + Math.abs(tresCol - lcol) == 1
+
+        ) {
+            document.getElementById("help_id").innerText = "Can smell it";
+            document.getElementById("help_id").style.color = "red";
+        }
+        else if (
+            Math.abs(tresRow - lrow) + Math.abs(tresCol - lcol) == 2
+        ) {
+
+            document.getElementById("help_id").innerText = "Close Matie";
+
+            document.getElementById("help_id").style.color = "orange";
+        } else {
+
+            document.getElementById("help_id").innerText = "Step Faster";
+
+            document.getElementById("help_id").style.color = "black";
+
+        }
+
+        penalty += 2;
+        document.getElementById("penalty").innerText = `Penalty: ${penalty}`;
+    }
+
+
+</script>
       </body>
       </html>
