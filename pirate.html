@@ -129,33 +129,31 @@
             document.getElementById("penalty").innerHTML="Penalty is "+ penalty
             lastCheck=position;        
         }
-        function help()
-        {
-            lastCol=lastCheck%5
-            lastRow=Math.floor(lastCheck/5)
-            treasureCol=treasureLocation%5
-            treasureRow=Math.floor(treasureLocation/5)
-            result=""
-            if(((((treasureCol-lastCol)**2)==1)&&((treasureRow-lastRow)**2==0))^(((treasureRow-lastRow)**2==1)&&(((treasureCol-lastCol)**2)==0)))
-            {
-                result="Can smell it"
-            }
-            else if(((((treasureCol-lastCol)**2)/2==2)&&((treasureRow-lastRow)**2==0))^(((treasureRow-lastRow)**2/2==2)&&(((treasureCol-lastCol)**2)==0)))
-            {
-                result="Close matie"
-            }
-            else if((treasureCol-lastCol)**2+(treasureRow-lastRow)**2==2)
-            {
-                result="Close matie"
-            }
-            else
-            {
-                result="Step faster"
-            }
-            penalty+=2
-            document.getElementById("penalty").innerHTML="Penalty is "+ penalty
-            document.getElementById("help").innerHTML=result           
-        }    
+        function help() {
+  var rowTreasure = Math.floor(treasureLocation / 5);
+  var colTreasure = treasureLocation % 5;
+  var rowLastCheck = Math.floor(lastCheck / 5);
+  var colLastCheck = lastCheck % 5;
+
+  var rowDiff = Math.abs(rowTreasure - rowLastCheck);
+  var colDiff = Math.abs(colTreasure - colLastCheck);
+
+  if ((rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1)) {
+    return "Can Smell It";
+  } else if (rowDiff + colDiff === 2) {
+    penalty += 2;
+    // Update the text on the element with id 'penalty'
+    return "Close Matie";
+  } else {
+    penalty += 2;
+    // Update the text on the element with id 'penalty'
+    return "Step Faster";
+  }
+  // Update the text on the element with id 'help'
+}
+     
+<button id="helpButton" onclick="document.getElementById('help').innerHTML = help()">Click for help</button>
+  
     </script>
       </body>
       </html>
