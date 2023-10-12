@@ -26,7 +26,7 @@
 
 
 <body>
-    <h2>Jonah Nishanth build a merger</h2>
+    <h2>Nishchala build a merger</h2>
     <label class="label" for="inputElement">Enter the text</label>
     <input type="text" id="textInput" placeholder="Enter text..">
 		<div class="flex-container" id="target">
@@ -38,7 +38,7 @@
 		<input type ="button" id ="addEnd"  value ="Add end">
         <input type ="button" id ="addFront"  value ="Add Front">
         <input type ="button" id ="remove"  value ="Remove">
-        <button type="button" class="button" onclick="swap()">Swap</button>	
+        
 </body>
 <script>
         document.getElementById("addEnd").addEventListener("click", function () {
@@ -66,18 +66,6 @@
             let container = document.querySelector(".flex-container");
             container.insertBefore(newDiv, container.firstChild);
         });
-        function swap() {
-	    let mergerItems = document.getElementsByClassName("merger");
-		let container = document.getElementById("target");
-		let element2 = Math.floor(Math.random() * mergerItems.length);
-		let element1 = Math.floor(Math.random() * mergerItems.length);
-		let firstInnerText = document.getElementsByClassName("merger")[element1];
-		let secondInnerText = document.getElementsByClassName("merger")[element2];
-		if (mergerItems.length > 1) {
-			let temp = firstInnerText.innerHTML;
-			firstInnerText.innerHTML = secondInnerText.innerHTML;
-			secondInnerText.innerHTML = temp;
-		}
-}
+        
 </script>
 </html>
